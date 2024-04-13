@@ -28,7 +28,6 @@ export default function Search() {
             className="s004"
             style={{
               minHeight: "100vh",
-              display: "-ms-flexbox",
               display: "flex",
               msFlexPack: "center",
               justifyContent: "center",
