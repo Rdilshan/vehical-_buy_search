@@ -3,11 +3,12 @@ import React from "react";
 import "../assets/css/main.css";
 import "../assets/css/main1.css";
 
+import Datasproduct from "../Componment/datatable";
 export default function Search() {
 
 
   function searchbtn(){
-    console.log("................")
+
     const legendElement = document.querySelector('legend'); 
     if (legendElement) { 
         legendElement.style.display = 'none'; 
@@ -16,7 +17,7 @@ export default function Search() {
     const divElement = document.querySelector('.s004'); 
     if (divElement) { 
         divElement.style.minHeight = '10vh'; 
-        divElement.style.transition = 'min-height 0.5s ease';
+        divElement.style.transition = 'min-height 0.8s ease';
     }
   }
   return (
@@ -65,8 +66,12 @@ export default function Search() {
               </fieldset>
             </form>
           </div>
+
+          <Datasproduct />
         </div>
       </main>
+
+      
     </>
   );
 }

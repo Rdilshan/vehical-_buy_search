@@ -8,7 +8,8 @@ export default function Home() {
   return (
     <>
       <main className="s-home s-home--static">
-        <div className="overlay"></div>
+      <div className="overlay" style={{ opacity: 0.3, backgroundColor: "#000000" }}></div>
+
 
         <div className="home-content">
           <div className="row home-content__main">
