@@ -2,22 +2,20 @@ import React from "react";
 
 import "../assets/css/main.css";
 import "../assets/css/main1.css";
+import { Triangle } from 'react-loader-spinner'
 
 import Datasproduct from "../Componment/datatable";
 export default function Search() {
-
-
-  function searchbtn(){
-
-    const legendElement = document.querySelector('legend'); 
-    if (legendElement) { 
-        legendElement.style.display = 'none'; 
+  function searchbtn() {
+    const legendElement = document.querySelector("legend");
+    if (legendElement) {
+      legendElement.style.display = "none";
     }
 
-    const divElement = document.querySelector('.s004'); 
-    if (divElement) { 
-        divElement.style.minHeight = '10vh'; 
-        divElement.style.transition = 'min-height 0.8s ease';
+    const divElement = document.querySelector(".s004");
+    if (divElement) {
+      divElement.style.minHeight = "10vh";
+      divElement.style.transition = "min-height 0.8s ease";
     }
   }
   return (
@@ -50,7 +48,13 @@ export default function Search() {
                       placeholder="Type to search..."
                       style={{ width: "100%" }}
                     />
-                    <button className="btn-search" type="button"  onClick={()=>{searchbtn()}}>
+                    <button
+                      className="btn-search"
+                      type="button"
+                      onClick={() => {
+                        searchbtn();
+                      }}
+                    >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="24"
@@ -65,12 +69,24 @@ export default function Search() {
               </fieldset>
             </form>
           </div>
+          {/* <Datasproduct /> */}
 
-          <Datasproduct />
+          {/* showing loading icon */}
+          <div style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
+            
+            <Triangle
+              visible={true}
+              height="400"
+              width="400"
+              color="#4fa94d"
+              ariaLabel="triangle-loading"
+              wrapperStyle={{}}
+              wrapperClass=""
+            />
+            
+          </div>
         </div>
       </main>
-
-      
     </>
   );
 }
