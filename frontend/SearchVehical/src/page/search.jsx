@@ -6,15 +6,11 @@ import { Triangle } from "react-loader-spinner";
 
 import Datasproduct from "../Componment/datatable";
 
-// const Advertisement = {
-//   title: "",
-//   price: "",
-//   location: "",
-//   link: "",
-//   img: ""
-// };
 
 export default function Search() {
+
+
+  
   const [inputValue, setInputValue] = useState("");
 
   const [isLoading, setIsLoading] = useState(false);
@@ -26,14 +22,14 @@ export default function Search() {
     displaychange();
     setIsLoading(true);
     setoncesearch(true);
-    console.log("User entered value:", inputValue);
-    const apiKey = process.env.BACKENDPORT;
+    // console.log("User entered value:", inputValue);
+
     axios
-      .post(`${apiKey}/search`, {
+      .post(`${import.meta.env.VITE_BACKENDPORT}/search`, {
         id: inputValue,
       })
       .then(async (response) => {
-        console.log("Response:", response.data.received_data);
+        // console.log("Response:", response.data.received_data);
 
         // const data = await response.json();
         setAds(response.data.received_data);
