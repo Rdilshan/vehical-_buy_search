@@ -1,4 +1,14 @@
 {
-  "builds": [{ "src": "main.py", "use": "@vercel/python", "builds": {"runtime": "python3.9" ,"maxLambdaSize": "15mb"} }],
+  "builds": [
+    {
+      "src": "main.py",
+      "use": "@vercel/python",
+      "builds": 
+        { 
+        "runtime": "python3.10.4",
+         "maxLambdaSize": "15mb" 
+        }
+    }
+  ],
   "routes": [{ "src": "/(.*)", "dest": "main.py" }]
 }
