@@ -8,8 +8,7 @@ import Datasproduct from "../Componment/datatable";
 
 
 export default function Search() {
-
-
+  console.log("value:", import.meta.env.VITE_API_KEY);
   
   const [inputValue, setInputValue] = useState("");
 
