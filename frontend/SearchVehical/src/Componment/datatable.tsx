@@ -2,7 +2,7 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 
 export default function Datatable({ data }: { data: any[] }) {
-  const representativeBodyTemplate = (data:any) => {
+  const representativeBodyTemplate = (data: any) => {
     return (
       <div className="flex align-items-center">
         <img alt="" src={data.img} width="80" />
@@ -10,10 +10,31 @@ export default function Datatable({ data }: { data: any[] }) {
     );
   };
 
+  const viewgotlink = (data: any) => {
+    return (
+      <div>
+        <button
+          onClick={() => window.open(data.link)}
+          style={{
+            backgroundColor: "#6f2e3094",
+            height: "42px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            color: "white",
+            fontWeight:"bold"
+          }}
+        >
+          View
+        </button>
+      </div>
+    );
+  };
+
   return (
     <>
       <div
-        style={{ backgroundColor: "#74747470", color: "white", margin: "10px" }}
+        style={{ backgroundColor: "#74747470", color: "white", margin: "0px 30px 60px 30px" }}
       >
         <DataTable
           value={data}
@@ -34,7 +55,14 @@ export default function Datatable({ data }: { data: any[] }) {
             body={(rowData) => representativeBodyTemplate(rowData)}
           />
 
-          <Column field="link" header="View"></Column>
+          <Column
+            header="View"
+            filterField="data"
+            showFilterMenu={false}
+            body={(rowData) => viewgotlink(rowData)}
+          />
+
+          {/* <Column field="link" header="View"></Column> */}
         </DataTable>
       </div>
     </>
