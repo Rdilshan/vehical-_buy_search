@@ -16,21 +16,20 @@ import Datasproduct from "../Componment/datatable";
 
 export default function Search() {
   const [inputValue, setInputValue] = useState("");
-  
+
   const [isLoading, setIsLoading] = useState(false);
   const [oncesearch, setoncesearch] = useState(false);
 
-  
   const [ads, setAds] = useState([]);
 
   function searchbtn() {
     displaychange();
     setIsLoading(true);
-    setoncesearch(true)
+    setoncesearch(true);
     console.log("User entered value:", inputValue);
-
+    const apiKey = process.env.BACKENDPORT;
     axios
-      .post("http://127.0.0.1:5000/search", {
+      .post(`${apiKey}/search`, {
         id: inputValue,
       })
       .then(async (response) => {
@@ -61,7 +60,10 @@ export default function Search() {
   return (
     <>
       <main className="s-home s-home--static">
-        <div className="overlay" style={{overflowY: oncesearch ? "scroll" : "hidden",}}>
+        <div
+          className="overlay"
+          style={{ overflowY: oncesearch ? "scroll" : "hidden" }}
+        >
           <div
             className="s004"
             style={{
@@ -118,7 +120,6 @@ export default function Search() {
             }}
           >
             <Datasproduct data={ads} />
-           
           </div>
 
           {/* showing loading icon */}
