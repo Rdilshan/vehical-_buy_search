@@ -5,3 +5,4 @@
 temp/
 Backend/.venv
 node_modules
+frontend/SearchVehical/node_modules
