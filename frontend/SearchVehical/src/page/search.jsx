@@ -1,12 +1,52 @@
-import React from "react";
-
+import React, { useState } from "react";
 import "../assets/css/main.css";
 import "../assets/css/main1.css";
-import { Triangle } from 'react-loader-spinner'
+import axios from "axios";
+import { Triangle } from "react-loader-spinner";
 
 import Datasproduct from "../Componment/datatable";
+
+// const Advertisement = {
+//   title: "",
+//   price: "",
+//   location: "",
+//   link: "",
+//   img: ""
+// };
+
 export default function Search() {
+  const [inputValue, setInputValue] = useState("");
+  
+  const [isLoading, setIsLoading] = useState(false);
+  const [oncesearch, setoncesearch] = useState(false);
+
+  
+  const [ads, setAds] = useState([]);
+
   function searchbtn() {
+    displaychange();
+    setIsLoading(true);
+    setoncesearch(true)
+    console.log("User entered value:", inputValue);
+
+    axios
+      .post("http://127.0.0.1:5000/search", {
+        id: inputValue,
+      })
+      .then(async (response) => {
+        console.log("Response:", response.data.received_data);
+
+        // const data = await response.json();
+        setAds(response.data.received_data);
+
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }
+
+  const displaychange = () => {
     const legendElement = document.querySelector("legend");
     if (legendElement) {
       legendElement.style.display = "none";
@@ -17,11 +57,11 @@ export default function Search() {
       divElement.style.minHeight = "10vh";
       divElement.style.transition = "min-height 0.8s ease";
     }
-  }
+  };
   return (
     <>
       <main className="s-home s-home--static">
-        <div className="overlay">
+        <div className="overlay" style={{overflowY: oncesearch ? "scroll" : "hidden",}}>
           <div
             className="s004"
             style={{
@@ -47,6 +87,7 @@ export default function Search() {
                       type="text"
                       placeholder="Type to search..."
                       style={{ width: "100%" }}
+                      onChange={(e) => setInputValue(e.target.value)}
                     />
                     <button
                       className="btn-search"
@@ -69,13 +110,28 @@ export default function Search() {
               </fieldset>
             </form>
           </div>
-          {/* <Datasproduct /> */}
+          <div
+            style={{
+              display: isLoading ? "none" : "block",
+              transition: "opacity 2s ease",
+              opacity: isLoading ? 0 : 1,
+            }}
+          >
+            <Datasproduct data={ads} />
+           
+          </div>
 
           {/* showing loading icon */}
-          <div style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
-            
+
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
             <Triangle
-              visible={true}
+              visible={isLoading}
               height="400"
               width="400"
               color="#4fa94d"
@@ -83,7 +139,6 @@ export default function Search() {
               wrapperStyle={{}}
               wrapperClass=""
             />
-            
           </div>
         </div>
       </main>

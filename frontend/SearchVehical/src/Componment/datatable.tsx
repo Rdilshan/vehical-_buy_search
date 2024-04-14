@@ -1,60 +1,42 @@
-
-
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 
-const products = [
-    {
-        id: '1000',
-        code: '1',
-        name: 'Bamboo Watch',
-        description: 'Product Description',
-        image: 'bamboo-watch.jpg',
-        price: 65,
-        category: 'Accessories',
-        quantity: 24,
-        inventoryStatus: 'INSTOCK',
-        rating: 5
-    },
-    {
-        id: '1000',
-        code: '2',
-        name: 'Bamboo Watch',
-        description: 'Product Description',
-        image: 'bamboo-watch.jpg',
-        price: 65,
-        category: 'Accessories',
-        quantity: 24,
-        inventoryStatus: 'INSTOCK',
-        rating: 5
-    },
-    {
-        id: '1000',
-        code: '3',
-        name: 'Bamboo Watch',
-        description: 'Product Description',
-        image: 'bamboo-watch.jpg',
-        price: 65,
-        category: 'Accessories',
-        quantity: 24,
-        inventoryStatus: 'INSTOCK',
-        rating: 5
-    },
-    // Add more product objects as needed
-];
+export default function Datatable({ data }: { data: any[] }) {
+  const representativeBodyTemplate = (data:any) => {
+    return (
+      <div className="flex align-items-center">
+        <img alt="" src={data.img} width="80" />
+      </div>
+    );
+  };
 
-export default function Datatable() {
   return (
     <>
-    <div style={{ backgroundColor: "#74747470", color: "white",margin:"10px"}}>
-    <DataTable value={products}  paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]} tableStyle={{ minWidth: '50rem' }}>
-        <Column field="code" header="Code" sortable ></Column>
-        <Column field="name" header="Name"  sortable ></Column>
-        <Column field="category" header="Category"></Column>
-        <Column field="quantity" header="Quantity"></Column>
-      </DataTable>
-    </div>
-      
+      <div
+        style={{ backgroundColor: "#74747470", color: "white", margin: "10px" }}
+      >
+        <DataTable
+          value={data}
+          paginator
+          rows={5}
+          rowsPerPageOptions={[5, 10, 25, 50]}
+          tableStyle={{ minWidth: "50rem" }}
+        >
+          <Column field="title" header="Title" sortable></Column>
+          <Column field="price" header="Price" sortable></Column>
+          <Column field="location" header="location"></Column>
+          {/* <Column field="img" header="Image"></Column> */}
+
+          <Column
+            header="Image"
+            filterField="data"
+            showFilterMenu={false}
+            body={(rowData) => representativeBodyTemplate(rowData)}
+          />
+
+          <Column field="link" header="View"></Column>
+        </DataTable>
+      </div>
     </>
   );
 }
