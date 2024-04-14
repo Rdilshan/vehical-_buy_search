@@ -3,9 +3,11 @@ from bs4 import BeautifulSoup
 from flask import Flask,jsonify,request
 import requests
 import pandas as pd
+from flask_cors import CORS
 
 
 app = Flask(__name__)
+CORS(app)
 @app.route('/',methods=['GET'])
 def user():
         return jsonify({"message":"working....."})
