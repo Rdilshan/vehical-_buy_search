@@ -3,7 +3,7 @@
     {
       "src": "main.py",
       "use": "@vercel/python",
-      "builds": 
+      "config": 
         { 
         "runtime": "python3.10.4",
          "maxLambdaSize": "15mb" 
