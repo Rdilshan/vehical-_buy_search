@@ -10,7 +10,8 @@ def search():
     if request.data:
         data = request.data.decode("utf-8")  
         json_data = request.get_json()
-        return jsonify({"received_data": json_data}), 200
+        id_value = json_data.get("id")
+        return jsonify({"received_data": json_data,"id":id_value}), 200
     else:
         return jsonify({"message": "No data received"}), 400
     
